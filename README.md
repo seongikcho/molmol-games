@@ -1,25 +1,21 @@
 # MOLMOL GAMES
 
-Official static website for **MOLMOL GAMES** — a game studio site with pages for games, news, store, about, recruit, and contact.
+Official static site for **MOLMOL GAMES** (몰몰게임즈).
 
-This repository is deployed with **GitHub Pages** (GitHub Actions) from the `main` branch.
+**Slogan:** PLAY SOFT. HIT HARD.
 
-## Local preview
+## Live
 
-Open `index.html` in a browser, or serve the folder with any static file server:
+https://seongikcho.github.io/molmol-games/
+
+## Local
+
+Open `index.html`, or:
 
 ```bash
-npx serve .
+python3 -m http.server 4173
 ```
 
-## Site structure
+## Deploy
 
-- `index.html` — home
-- `games.html`, `news.html`, `news-detail.html`, `store.html`
-- `about.html`, `recruit.html`, `contact.html`
-- `css/main.css`, `js/main.js`, `js/i18n.js`
-- `assets/` — logo and icons
-
-## Live site
-
-After Pages is enabled: https://seongikcho.github.io/molmol-games/
+GitHub Pages via Actions (`.github/workflows/pages.yml`). Push to `main` to publish.
