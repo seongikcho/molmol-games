@@ -1,0 +1,96 @@
+@media (min-width: 768px) { .values-grid { grid-template-columns: repeat(3, 1fr); } }
+.value-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.75rem;
+}
+.value-card h3 {
+  font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--lime);
+}
+.value-card p { font-size: 0.95rem; }
+.studio-grid-visual {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+  margin-bottom: 3rem; border-radius: var(--radius-lg); overflow: hidden;
+  aspect-ratio: 21/9;
+}
+.studio-cell {
+  background: var(--surface-2); position: relative; overflow: hidden;
+}
+.studio-cell:nth-child(1) { background: linear-gradient(135deg, #2a1814, #1a1010); grid-column: span 2; }
+.studio-cell:nth-child(2) { background: linear-gradient(180deg, #1a1430, #0a0a18); }
+.studio-cell:nth-child(3) { background: linear-gradient(200deg, #141c22, #0c1014); }
+.studio-cell:nth-child(4) { background: linear-gradient(170deg, #0c2030, #061018); grid-column: span 2; }
+.studio-cell:nth-child(5) { background: radial-gradient(circle, rgba(255,90,54,0.3), #141416); }
+.studio-cell:nth-child(6) { background: radial-gradient(circle, rgba(200,242,90,0.2), #141416); }
+
+/* News page */
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;
+}
+.filter-btn {
+  min-height: 44px; padding: 0.5rem 1.1rem;
+  font-family: var(--font-en); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--line); border-radius: 999px; color: var(--muted);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.filter-btn:hover, .filter-btn.is-active {
+  background: var(--surface-2); color: var(--text); border-color: var(--text);
+}
+.news-list {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .news-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .news-list { grid-template-columns: repeat(3, 1fr); } }
+.news-item[hidden] { display: none !important; }
+
+/* News detail */
+.article { padding: 3rem 0 5rem; }
+.article-meta {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+  margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--muted);
+}
+.article h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); margin-bottom: 1.5rem; max-width: 28ch; }
+.article-hero-visual {
+  aspect-ratio: 21/9; border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 2.5rem; background: var(--surface);
+}
+.article-body { max-width: 68ch; }
+.article-body p { margin-bottom: 1.25rem; font-size: 1.05rem; line-height: 1.75; color: var(--muted); }
+.article-body h2 { font-size: 1.35rem; margin: 2rem 0 1rem; color: var(--text); }
+.article-body blockquote {
+  border-left: 3px solid var(--accent); padding-left: 1.25rem;
+  margin: 2rem 0; font-size: 1.15rem; color: var(--text);
+  font-family: var(--font-display);
+}
+
+/* Recruit */
+.recruit-intro { margin-bottom: 3rem; max-width: 48ch; }
+.benefits-grid {
+  display: grid; gap: 1rem; margin-bottom: 4rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+.benefit-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.benefit-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.benefit-card p { font-size: 0.9rem; }
+.positions-header {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem;
+}
+.position-list { display: grid; gap: 0.75rem; }
+.position-item {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); overflow: hidden;
+}
+.position-item[hidden] { display: none !important; }
+.position-toggle {
+  width: 100%; display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 0.75rem;
+  padding: 1.25rem 1.5rem; text-align: left; min-height: 44px;
+  transition: background 0.2s;
+}
