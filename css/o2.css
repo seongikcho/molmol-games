@@ -1,0 +1,96 @@
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: #ff704f; }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--text); }
+.btn-lime { background: var(--lime-bright); color: #1A1814; border-color: var(--lime-bright); }
+.btn-lime:hover { background: #d4f87a; color: #1A1814; }
+.btn-text {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  min-height: 44px; font-family: var(--font-en); font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.03em; color: var(--text); position: relative;
+}
+.btn-text::after {
+  content: ""; position: absolute; left: 0; bottom: 8px; width: 0; height: 1.5px;
+  background: var(--accent); transition: width 0.3s var(--ease);
+}
+.btn-text:hover::after { width: 100%; }
+
+/* Header */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--header-h);
+  transition: background 0.35s var(--ease), backdrop-filter 0.35s, border-color 0.35s;
+  border-bottom: 1px solid transparent;
+}
+.site-header.is-scrolled {
+  background: rgba(247, 242, 234, 0.88);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--line);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; width: min(100% - 40px, var(--max)); margin-inline: auto; gap: 1.5rem;
+}
+.logo {
+  display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0;
+  color: var(--text); z-index: 1002;
+}
+.logo-mark { width: 36px; height: 36px; flex-shrink: 0; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-en {
+  font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.logo-ko { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 2px; }
+
+.nav-desktop { display: none; align-items: center; gap: 0.25rem; }
+@media (min-width: 1024px) { .nav-desktop { display: flex; } }
+.nav-desktop a {
+  padding: 0.5rem 0.85rem; font-family: var(--font-en); font-size: 0.8rem;
+  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.2s; min-height: 44px;
+  display: inline-flex; align-items: center;
+}
+.nav-desktop a:hover, .nav-desktop a[aria-current="page"] { color: var(--text); }
+.nav-desktop a.nav-store {
+  margin-left: 0.5rem; color: #1A1814; background: var(--lime-bright);
+  border-radius: 999px; padding: 0.45rem 1rem;
+}
+.nav-desktop a.nav-store:hover { background: #d4f87a; color: #1A1814; }
+
+.header-actions { display: flex; align-items: center; gap: 0.75rem; }
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 0;
+  border: 1px solid var(--line); border-radius: 999px; overflow: hidden;
+  min-height: 36px;
+}
+.lang-toggle button {
+  padding: 0.35rem 0.7rem; font-family: var(--font-en); font-size: 0.7rem;
+  font-weight: 700; letter-spacing: 0.05em; color: var(--muted);
+  min-height: 36px; min-width: 40px; transition: background 0.2s, color 0.2s;
+}
+.lang-toggle button.is-active { background: var(--surface-2); color: var(--text); }
+
+.menu-toggle {
+  display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  width: 44px; height: 44px; padding: 10px; z-index: 1002;
+}
+@media (min-width: 1024px) { .menu-toggle { display: none; } }
+.menu-toggle span {
+  display: block; height: 1.5px; background: var(--text);
+  transition: transform 0.3s var(--ease), opacity 0.3s;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Mobile nav overlay */
+.nav-mobile {
+  position: fixed; inset: 0; z-index: 1001;
+  background: rgba(247, 242, 234, 0.96);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 0.5rem; opacity: 0; visibility: hidden;
+  transition: opacity 0.35s var(--ease), visibility 0.35s;
+}
