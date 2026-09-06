@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MOLMOL GAMES 뉴스 — 업데이트, 출시, 스튜디오, 이벤트.">
+  <title>NEWS — MOLMOL GAMES</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="assets/icon-dots.svg" type="image/svg+xml">
+</head>
+<body id="top" class="lang-ko">
+  <div class="scroll-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Scroll progress"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="MOLMOL GAMES home">
+        <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="13" cy="20" r="9" fill="currentColor"/><circle cx="27" cy="20" r="9" fill="currentColor" opacity="0.85"/></svg>
+        <span class="logo-text"><span class="logo-en">MOLMOL</span><span class="logo-ko">몰몰게임즈</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="games.html" data-i18n="nav_games">GAMES</a>
+        <a href="about.html" data-i18n="nav_about">ABOUT</a>
+        <a href="news.html" data-i18n="nav_news">NEWS</a>
+        <a href="recruit.html" data-i18n="nav_recruit">RECRUIT</a>
+        <a href="contact.html" data-i18n="nav_contact">CONTACT</a>
+        <a href="store.html" class="nav-store" data-i18n="nav_store">STORE</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-lang="ko" class="is-active" aria-pressed="true">KO</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria="menu_open" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile">
+    <a href="games.html" data-i18n="nav_games">GAMES</a>
+    <a href="about.html" data-i18n="nav_about">ABOUT</a>
+    <a href="news.html" data-i18n="nav_news">NEWS</a>
+    <a href="recruit.html" data-i18n="nav_recruit">RECRUIT</a>
+    <a href="contact.html" data-i18n="nav_contact">CONTACT</a>
+    <a href="store.html" class="nav-store" data-i18n="nav_store">STORE</a>
+  </nav>
+
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <h1 data-i18n="page_news_title">NEWS</h1>
+        <p class="lede">스튜디오와 타이틀에서 일어나는 일. 짧고 분명하게.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="News categories">
+          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">ALL</button>
+          <button type="button" class="filter-btn" data-filter="release" aria-pressed="false">RELEASE</button>
+          <button type="button" class="filter-btn" data-filter="update" aria-pressed="false">UPDATE</button>
+          <button type="button" class="filter-btn" data-filter="studio" aria-pressed="false">STUDIO</button>
+          <button type="button" class="filter-btn" data-filter="event" aria-pressed="false">EVENT</button>
+        </div>
+
+        <div class="news-list">
+          <a href="news-detail.html" class="news-card news-item reveal" data-category="update">
+            <div class="news-card-thumb"><div class="poster poster-cotton" role="img" aria-label="Cotton Revenant update"><span class="poster-label" style="font-size:0.85rem">UPDATE</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">UPDATE</p>
+              <h2 class="news-card-title">코튼 레버넌트, 무료 업데이트 ‘실의 잔향’ 배포</h2>
+              <time class="news-card-date" datetime="2026-08-12">2026.08.12</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="studio">
+            <div class="news-card-thumb"><div class="poster poster-maru" role="img" aria-label="Project Maru note"><span class="poster-label" style="font-size:0.85rem">MARU</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">STUDIO</p>
+              <h2 class="news-card-title">프로젝트 마루 아트 디렉션 공개 노트</h2>
+              <time class="news-card-date" datetime="2026-07-28">2026.07.28</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="update">
+            <div class="news-card-thumb"><div class="poster poster-night" role="img" aria-label="Night Market event"><span class="poster-label" style="font-size:0.85rem">LIVE</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">UPDATE</p>
+              <h2 class="news-card-title">몰리와 밤시장, 여름 축제 시즌 이벤트</h2>
+              <time class="news-card-date" datetime="2026-07-01">2026.07.01</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="event">
+            <div class="news-card-thumb"><div class="poster poster-hush" role="img" aria-label="Hush Parade event"><span class="poster-label" style="font-size:0.85rem">EVENT</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">EVENT</p>
+              <h2 class="news-card-title">허시 퍼레이드 2인 플레이 데이 in 성수</h2>
+              <time class="news-card-date" datetime="2026-06-15">2026.06.15</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="release">
+            <div class="news-card-thumb"><div class="poster poster-cotton" role="img" aria-label="Cotton soundtrack"><span class="poster-label" style="font-size:0.85rem">OST</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">RELEASE</p>
+              <h2 class="news-card-title">코튼 레버넌트 OST 디지털 릴리스</h2>
+              <time class="news-card-date" datetime="2026-05-20">2026.05.20</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="studio">
+            <div class="news-card-thumb"><div class="poster poster-maru" role="img" aria-label="Hiring"><span class="poster-label" style="font-size:0.85rem">TEAM</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">STUDIO</p>
+              <h2 class="news-card-title">성수 스튜디오 확장 — 사운드룸 오픈</h2>
+              <time class="news-card-date" datetime="2026-04-08">2026.04.08</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="release">
+            <div class="news-card-thumb"><div class="poster poster-hush" role="img" aria-label="Hush patch"><span class="poster-label" style="font-size:0.85rem">CONSOLE</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">RELEASE</p>
+              <h2 class="news-card-title">허시 퍼레이드 콘솔 패치 1.2 — 제스처 캘리브레이션</h2>
+              <time class="news-card-date" datetime="2026-03-22">2026.03.22</time>
+            </div>
+          </a>
+
+          <a href="news.html#" class="news-card news-item reveal" data-category="event">
+            <div class="news-card-thumb"><div class="poster poster-night" role="img" aria-label="G-Star"><span class="poster-label" style="font-size:0.85rem">SHOW</span></div></div>
+            <div class="news-card-body">
+              <p class="news-card-cat">EVENT</p>
+              <h2 class="news-card-title">지스타 2026 몰몰 부스 — 마루 플레이어블 티저</h2>
+              <time class="news-card-date" datetime="2026-02-10">2026.02.10</time>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" aria-label="MOLMOL GAMES">
+            <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="13" cy="20" r="9" fill="currentColor"/><circle cx="27" cy="20" r="9" fill="currentColor" opacity="0.85"/></svg>
+            <span class="logo-text"><span class="logo-en">MOLMOL</span><span class="logo-ko">몰몰게임즈</span></span>
+          </a>
+          <p class="footer-slogan">PLAY SOFT. HIT HARD.</p>
+          <p class="footer-desc">부드러운 세계관과 단단한 플레이가 만나는 서울 기반 게임 스튜디오.</p>
+        </div>
+        <div class="footer-nav">
+          <h4 data-i18n="footer_explore">Explore</h4>
+          <ul>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="store.html">Store</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4 data-i18n="footer_connect">Connect</h4>
+          <div class="social-links">
+            <a href="#" aria-label="X (Twitter)">X</a>
+            <a href="#" aria-label="YouTube">YT</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Discord">DC</a>
+          </div>
+          <p style="margin-top:1.25rem;font-size:0.85rem;color:var(--muted)" data-i18n="footer_address">서울시 성동구 성수일로 00 n층</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>© 2026 Molmol Games. All rights reserved.</p>
+          <p>사업자등록번호 000-00-00000 · 대표 김몰몰 · molmol.games</p>
+        </div>
+        <a href="#top" class="back-to-top" data-i18n="back_to_top">Back to Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
