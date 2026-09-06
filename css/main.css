@@ -1,21 +1,4 @@
-@import url("o1.css");
-@import url("o2.css");
-@import url("o3.css");
-@import url("o4.css");
-@import url("o5.css");
-@import url("o6.css");
-@import url("o7.css");
-@import url("o8.css");
-@import url("o9.css");
-
-/* Bright-tone tokens (also in o1.css) — Warm bright studio · Premium indie */
-:root {
-  --bg: #F7F2EA;
-  --surface: #FFFFFF;
-  --surface-2: #EFE8DC;
-  --text: #1A1814;
-  --muted: #6B645A;
-  --accent: #FF5A36;
-  --lime: #5A9E0B;
-  --lime-bright: #C8F25A;
-}
+@import url("p1.css");
+@import url("p2.css");
+@import url("p3.css");
+@import url("p4.css");
