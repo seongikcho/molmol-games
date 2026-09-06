@@ -16,7 +16,7 @@
   --white: #FFFFFF;
   --dark: #0E0E0E;
   --dark-2: #1A1A1A;
-  --header-h: 68px;
+  --header-h: 84px;
   --radius: 14px;
   --radius-sm: 10px;
   --pill: 999px;
@@ -127,9 +127,14 @@ h1, h2, h3, h4 {
   align-items: center;
 }
 .logo-img {
-  height: 32px;
-  width: 32px;
-  border-radius: 8px;
+  height: 56px;
+  width: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.site-header .logo-img {
+  height: 56px;
+  width: 56px;
 }
 
 .nav-desktop {
@@ -289,7 +294,9 @@ h1, h2, h3, h4 {
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-.nav-panel-top .logo-img { height: 36px; width: 36px; }
+.nav-panel-top .logo-img { height: 48px; width: 48px; border-radius: 11px; }
+.nav-panel-top .logo { gap: 0.65rem; }
+.nav-panel-top .logo-wordmark { font-size: 1.25rem; color: var(--ink); }
 .nav-panel-close {
   width: 40px; height: 40px;
   border-radius: 10px;
@@ -377,9 +384,9 @@ h1, h2, h3, h4 {
 .logo { display: inline-flex; align-items: center; gap: 0.55rem; }
 .logo-wordmark {
   font-family: var(--font-ko, "Pretendard", sans-serif);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--ink, #111);
   line-height: 1;
   white-space: nowrap;
