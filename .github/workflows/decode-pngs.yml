@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble logo b64 parts and write PNGs
+      - name: Decode logo (+ optional favicon parts)
         run: |
           set -euo pipefail
           python3 <<'PY'
@@ -22,59 +22,49 @@ jobs:
           root = pathlib.Path('assets')
           EXPECT = '4c0d6f4a9b4b4615871de3acecbba765c6c97e672b46ee855542288a01d0fbcf'
           MAGIC = bytes.fromhex('89504e470d0a1a0a')
-          # Fix known MCP paste typos on logo parts only
           for fname, reps in {
             'logo-molmol.png.b64.part04': [('Vz4emdH', 'Us4emdH')],
             'logo-molmol.png.b64.part10': [('D4AQdF0GmC', 'D0AQdF0GmC'), ('97766+T10', '97776+T10')],
           }.items():
             p = root / fname
-            if not p.exists():
-              continue
-            t = p.read_text()
-            orig = t
-            for a, b in reps:
-              t = t.replace(a, b, 1)
-            if t != orig:
-              p.write_text(t)
-              print('fixed', fname)
-          # Ignore incomplete/corrupt favicon/apple sidecars
-          for junk in list(root.glob('favicon.png.b64*')) + list(root.glob('apple-touch-icon.png.b64*')):
-            print('removing junk', junk.name)
-            junk.unlink()
-          png = None
-          # Prefer large SVG data-URI extract
-          svg_path = root / 'logo-molmol.svg'
-          if svg_path.exists() and svg_path.stat().st_size > 5000:
-            svg = svg_path.read_text(encoding='utf-8')
-            m = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg)
-            if m:
-              png = base64.b64decode(m.group(1))
-              print('extracted from svg', len(png))
-          # Assemble logo parts
+            if p.exists():
+              t = p.read_text(); orig=t
+              for a,b in reps: t=t.replace(a,b,1)
+              if t!=orig: p.write_text(t); print('fixed', fname)
+          # remove incomplete apple sidecar leftovers
+          for junk in root.glob('apple-touch-icon.png.b64*'):
+            junk.unlink(); print('removed', junk.name)
+          # logo from parts
           parts = sorted(root.glob('logo-molmol.png.b64.part*'))
-          if parts:
-            data = ''.join(p.read_text().strip() for p in parts)
-            print('assembled', len(parts), 'parts', 'b64len', len(data))
-            png = base64.b64decode(re.sub(r'\s+', '', data))
-          assert png is not None and png[:8] == MAGIC, (None if png is None else png[:8])
-          (root / 'logo-molmol.png').write_bytes(png)
-          sha = hashlib.sha256(png).hexdigest()
-          print('wrote logo-molmol.png', len(png), sha)
-          assert sha == EXPECT or png[:8] == MAGIC
-          for name in ['favicon.png', 'apple-touch-icon.png']:
-            shutil.copyfile(root / 'logo-molmol.png', root / name)
-            print('copied to', name)
+          assert parts, 'missing logo parts'
+          data = ''.join(p.read_text().strip() for p in parts)
+          png = base64.b64decode(re.sub(r'\s+', '', data))
+          assert png[:8]==MAGIC
+          (root/'logo-molmol.png').write_bytes(png)
+          print('logo', len(png), hashlib.sha256(png).hexdigest())
+          # favicon from dedicated parts if complete (>=2), else keep existing small, else copy logo
+          fparts = sorted(root.glob('favicon.png.b64.part*'))
+          if len(fparts) >= 2:
+            fb = base64.b64decode(re.sub(r'\s+', '', ''.join(p.read_text().strip() for p in fparts)))
+            assert fb[:8]==MAGIC
+            (root/'favicon.png').write_bytes(fb)
+            (root/'apple-touch-icon.png').write_bytes(fb)
+            print('favicon/apple from parts', len(fb))
+          else:
+            for name in ['favicon.png','apple-touch-icon.png']:
+              cur = root/name
+              if cur.exists() and cur.stat().st_size < 20000 and cur.read_bytes()[:8]==MAGIC:
+                print('keeping', name, cur.stat().st_size)
+              else:
+                shutil.copyfile(root/'logo-molmol.png', cur)
+                print('copied logo to', name)
           PY
       - name: Commit decoded PNGs
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/logo-molmol.png assets/favicon.png assets/apple-touch-icon.png
-          git add -u assets/favicon.png.b64 assets/favicon.png.b64.* assets/apple-touch-icon.png.b64* 2>/dev/null || true
-          if git diff --staged --quiet; then
-            echo "No PNG changes"
-            exit 0
-          fi
+          git add assets/logo-molmol.png assets/favicon.png assets/apple-touch-icon.png
+          if git diff --staged --quiet; then echo No PNG changes; exit 0; fi
           git commit -m "Add decoded PNG logo assets (binary)"
           git push
