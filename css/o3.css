@@ -1,0 +1,102 @@
+.nav-mobile.is-open { opacity: 1; visibility: visible; }
+.nav-mobile a {
+  font-family: var(--font-display); font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 700; letter-spacing: 0.04em; padding: 0.75rem 1.5rem;
+  min-height: 44px; color: var(--text); transition: color 0.2s;
+}
+.nav-mobile a:hover { color: var(--accent); }
+.nav-mobile a.nav-store { color: var(--lime); }
+
+/* Reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Hero */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100dvh;
+  display: flex; align-items: flex-end; padding-bottom: 5rem;
+  padding-top: calc(var(--header-h) + 2rem); overflow: hidden;
+}
+.hero-visual {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 70% 40%, rgba(255, 90, 54, 0.28), transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(200, 242, 90, 0.12), transparent 50%),
+    linear-gradient(160deg, #2A221E 0%, #3A2822 42%, #1E1814 100%);
+}
+.hero-visual::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(244,239,230,0.045) 48px, rgba(244,239,230,0.045) 49px),
+    repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(244,239,230,0.045) 48px, rgba(244,239,230,0.045) 49px);
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 45%, black, transparent);
+}
+.hero-visual::after {
+  content: ""; position: absolute;
+  width: 280px; height: 280px; border-radius: 50%;
+  border: 1px solid rgba(255, 90, 54, 0.35);
+  top: 22%; right: 18%;
+  box-shadow: 0 0 80px rgba(255, 90, 54, 0.15), inset 0 0 60px rgba(255, 90, 54, 0.08);
+  animation: pulse-ring 6s ease-in-out infinite;
+}
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+.hero-thread {
+  position: absolute; top: 30%; left: 10%; width: 55%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5; transform: rotate(-8deg);
+}
+.hero-thread:nth-of-type(2) { top: 48%; left: 25%; width: 40%; transform: rotate(4deg); opacity: 0.3; }
+.hero-content { position: relative; z-index: 1; width: min(100% - 40px, var(--max)); margin-inline: auto; }
+.hero-eyebrow {
+  font-family: var(--font-en); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 1rem;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5.5rem); margin-bottom: 1rem;
+  max-width: 14ch;
+}
+.hero-tagline {
+  font-family: var(--font-en); font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500; color: var(--text); margin-bottom: 0.5rem;
+}
+.hero-sub { font-size: 1rem; margin-bottom: 2rem; max-width: 36ch; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem; }
+.scroll-hint {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
+}
+.scroll-hint-label {
+  font-family: var(--font-en); font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+}
+.scroll-hint-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+/* Game showcase sections */
+.game-showcase {
+  position: relative;
+  min-height: 90vh;
+  display: flex; align-items: center;
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+}
+.game-showcase-inner {
+  display: grid; gap: 2.5rem; align-items: center;
+  width: min(100% - 40px, var(--max)); margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .game-showcase-inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .game-showcase.reverse .game-showcase-inner { direction: rtl; }
+  .game-showcase.reverse .game-showcase-inner > * { direction: ltr; }
+}
