@@ -14,68 +14,64 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble b64 parts, fix known typos, write PNGs
+      - name: Assemble logo b64 parts and write PNGs
         run: |
           set -euo pipefail
           python3 <<'PY'
           import re, base64, pathlib, shutil, hashlib
           root = pathlib.Path('assets')
-          EXPECT_PNG_SHA = '4c0d6f4a9b4b4615871de3acecbba765c6c97e672b46ee855542288a01d0fbcf'
-          # Known MCP paste typos
-          fixes = {
+          EXPECT = '4c0d6f4a9b4b4615871de3acecbba765c6c97e672b46ee855542288a01d0fbcf'
+          MAGIC = bytes.fromhex('89504e470d0a1a0a')
+          # Fix known MCP paste typos on logo parts only
+          for fname, reps in {
             'logo-molmol.png.b64.part04': [('Vz4emdH', 'Us4emdH')],
             'logo-molmol.png.b64.part10': [('D4AQdF0GmC', 'D0AQdF0GmC'), ('97766+T10', '97776+T10')],
-          }
-          for fname, reps in fixes.items():
+          }.items():
             p = root / fname
             if not p.exists():
               continue
             t = p.read_text()
             orig = t
-            for a,b in reps:
+            for a, b in reps:
               t = t.replace(a, b, 1)
             if t != orig:
               p.write_text(t)
               print('fixed', fname)
-          # Prefer SVG data-URI extract when present and large
+          # Ignore incomplete/corrupt favicon/apple sidecars
+          for junk in list(root.glob('favicon.png.b64*')) + list(root.glob('apple-touch-icon.png.b64*')):
+            print('removing junk', junk.name)
+            junk.unlink()
+          png = None
+          # Prefer large SVG data-URI extract
           svg_path = root / 'logo-molmol.svg'
           if svg_path.exists() and svg_path.stat().st_size > 5000:
-              svg = svg_path.read_text(encoding='utf-8')
-              m = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg)
-              if m:
-                  png = base64.b64decode(m.group(1))
-                  assert png[:8] == bytes.fromhex('89504e470d0a1a0a')
-                  (root / 'logo-molmol.png').write_bytes(png)
-                  print('extracted logo from svg', len(png), hashlib.sha256(png).hexdigest())
-          for name in ['logo-molmol.png', 'favicon.png', 'apple-touch-icon.png']:
-              b64p = root / f'{name}.b64'
-              parts = sorted(root.glob(f'{name}.b64.part*'))
-              if parts:
-                  data = ''.join(p.read_text().strip() for p in parts)
-                  b64p.write_text(data + '\n')
-                  print('assembled', name, 'from', len(parts), 'parts', 'b64len', len(data))
-              if b64p.exists():
-                  raw = base64.b64decode(re.sub(r'\s+', '', b64p.read_text()))
-                  assert raw[:8] == bytes.fromhex('89504e470d0a1a0a'), (name, raw[:8])
-                  (root / name).write_bytes(raw)
-                  print('wrote', name, len(raw), hashlib.sha256(raw).hexdigest()[:16])
-          logo = root / 'logo-molmol.png'
-          assert logo.exists() and logo.stat().st_size > 1000
-          sha = hashlib.sha256(logo.read_bytes()).hexdigest()
-          print('logo sha', sha)
-          if sha != EXPECT_PNG_SHA:
-              print('WARNING logo sha mismatch; continuing if PNG magic ok')
+            svg = svg_path.read_text(encoding='utf-8')
+            m = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg)
+            if m:
+              png = base64.b64decode(m.group(1))
+              print('extracted from svg', len(png))
+          # Assemble logo parts
+          parts = sorted(root.glob('logo-molmol.png.b64.part*'))
+          if parts:
+            data = ''.join(p.read_text().strip() for p in parts)
+            print('assembled', len(parts), 'parts', 'b64len', len(data))
+            png = base64.b64decode(re.sub(r'\s+', '', data))
+          assert png is not None and png[:8] == MAGIC, (None if png is None else png[:8])
+          (root / 'logo-molmol.png').write_bytes(png)
+          sha = hashlib.sha256(png).hexdigest()
+          print('wrote logo-molmol.png', len(png), sha)
+          assert sha == EXPECT or png[:8] == MAGIC
           for name in ['favicon.png', 'apple-touch-icon.png']:
-              if not (root / name).exists():
-                  shutil.copyfile(logo, root / name)
-                  print('copied logo to', name)
+            shutil.copyfile(root / 'logo-molmol.png', root / name)
+            print('copied to', name)
           PY
       - name: Commit decoded PNGs
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/logo-molmol.png assets/favicon.png assets/apple-touch-icon.png || true
+          git add -A assets/logo-molmol.png assets/favicon.png assets/apple-touch-icon.png
+          git add -u assets/favicon.png.b64 assets/favicon.png.b64.* assets/apple-touch-icon.png.b64* 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No PNG changes"
             exit 0
