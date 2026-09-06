@@ -1,0 +1,96 @@
+@media (min-width: 768px) { .store-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .store-grid { grid-template-columns: repeat(3, 1fr); } }
+.store-item {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+.store-item:hover { border-color: rgba(26, 24, 20, 0.28); transform: translateY(-3px); }
+.store-thumb {
+  aspect-ratio: 1; position: relative; overflow: hidden; background: var(--surface-2);
+}
+.store-thumb .poster { transition: transform 0.5s var(--ease); }
+.store-item:hover .store-thumb .poster { transform: scale(1.04); }
+.store-body { padding: 1.25rem; }
+.store-body h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+.store-body .price {
+  font-family: var(--font-en); font-size: 0.85rem; color: var(--muted);
+  margin-bottom: 1rem;
+}
+.coming-soon-tag {
+  position: absolute; top: 1rem; left: 1rem; z-index: 2;
+  font-family: var(--font-en); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: rgba(247, 242, 234, 0.92); color: var(--lime);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.7rem; border-radius: 999px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(26, 24, 20, 0.45); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.modal-overlay.is-open { opacity: 1; visibility: visible; }
+.modal {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 2rem; width: min(100%, 480px);
+  position: relative; transform: translateY(16px);
+  transition: transform 0.35s var(--ease);
+}
+.modal-overlay.is-open .modal { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: var(--muted); border-radius: 50%;
+  transition: color 0.2s, background 0.2s;
+}
+.modal-close:hover { color: var(--text); background: var(--surface-2); }
+.modal h2 { font-size: 1.35rem; margin-bottom: 0.75rem; padding-right: 2rem; }
+.modal p { margin-bottom: 1.5rem; }
+.modal-placeholder {
+  aspect-ratio: 16/9; background: var(--surface-2); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem; border: 1px dashed var(--line);
+  font-family: var(--font-en); font-size: 0.8rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 4rem 0 2rem; margin-top: 0;
+}
+.footer-grid {
+  display: grid; gap: 2.5rem; margin-bottom: 3rem;
+}
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+}
+.footer-brand .logo { margin-bottom: 1rem; }
+.footer-slogan {
+  font-family: var(--font-en); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.75rem;
+}
+.footer-desc { font-size: 0.9rem; max-width: 32ch; }
+.footer-nav h4, .footer-social h4 {
+  font-family: var(--font-en); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 1rem;
+}
+.footer-nav ul { display: grid; gap: 0.5rem; }
+.footer-nav a {
+  font-size: 0.95rem; color: var(--text); min-height: 44px;
+  display: inline-flex; align-items: center; transition: color 0.2s;
+}
+.footer-nav a:hover { color: var(--accent); }
+.social-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.social-links a {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 50%;
+  font-family: var(--font-en); font-size: 0.7rem; font-weight: 700;
+  color: var(--muted); transition: border-color 0.2s, color 0.2s;
+}
