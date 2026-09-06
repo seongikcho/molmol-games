@@ -14,53 +14,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Extract PNG from SVG / assemble b64 parts
+      - name: Assemble b64 parts, fix known typos, write PNGs
         run: |
           set -euo pipefail
           python3 <<'PY'
-          import re, base64, pathlib, shutil
+          import re, base64, pathlib, shutil, hashlib
           root = pathlib.Path('assets')
-          # Fix known typo in part04 if present (Vz->Us at critical site)
-          p4 = root / 'logo-molmol.png.b64.part04'
-          if p4.exists():
-              t = p4.read_text()
-              if 'Vz4emdH' in t:
-                  p4.write_text(t.replace('Vz4emdH', 'Us4emdH', 1))
-                  print('fixed part04 Vz->Us')
+          EXPECT_PNG_SHA = '4c0d6f4a9b4b4615871de3acecbba765c6c97e672b46ee855542288a01d0fbcf'
+          # Known MCP paste typos
+          fixes = {
+            'logo-molmol.png.b64.part04': [('Vz4emdH', 'Us4emdH')],
+            'logo-molmol.png.b64.part10': [('D4AQdF0GmC', 'D0AQdF0GmC'), ('97766+T10', '97776+T10')],
+          }
+          for fname, reps in fixes.items():
+            p = root / fname
+            if not p.exists():
+              continue
+            t = p.read_text()
+            orig = t
+            for a,b in reps:
+              t = t.replace(a, b, 1)
+            if t != orig:
+              p.write_text(t)
+              print('fixed', fname)
+          # Prefer SVG data-URI extract when present and large
           svg_path = root / 'logo-molmol.svg'
-          if svg_path.exists():
+          if svg_path.exists() and svg_path.stat().st_size > 5000:
               svg = svg_path.read_text(encoding='utf-8')
               m = re.search(r'data:image/png;base64,([A-Za-z0-9+/=]+)', svg)
               if m:
                   png = base64.b64decode(m.group(1))
                   assert png[:8] == bytes.fromhex('89504e470d0a1a0a')
                   (root / 'logo-molmol.png').write_bytes(png)
-                  print('extracted logo-molmol.png from svg', len(png))
+                  print('extracted logo from svg', len(png), hashlib.sha256(png).hexdigest())
           for name in ['logo-molmol.png', 'favicon.png', 'apple-touch-icon.png']:
-              if name == 'logo-molmol.png' and (root / name).exists() and (root / name).stat().st_size > 1000:
-                  # prefer svg extract if already written
-                  if not list(root.glob(f'{name}.b64.part*')) and not (root / f'{name}.b64').exists():
-                      print('keep svg-extracted', name)
-                      continue
               b64p = root / f'{name}.b64'
               parts = sorted(root.glob(f'{name}.b64.part*'))
               if parts:
                   data = ''.join(p.read_text().strip() for p in parts)
                   b64p.write_text(data + '\n')
-                  print('assembled', b64p, 'from', len(parts), 'parts')
+                  print('assembled', name, 'from', len(parts), 'parts', 'b64len', len(data))
               if b64p.exists():
                   raw = base64.b64decode(re.sub(r'\s+', '', b64p.read_text()))
                   assert raw[:8] == bytes.fromhex('89504e470d0a1a0a'), (name, raw[:8])
                   (root / name).write_bytes(raw)
-                  print('wrote', name, len(raw))
-          # ensure favicon/apple exist
+                  print('wrote', name, len(raw), hashlib.sha256(raw).hexdigest()[:16])
           logo = root / 'logo-molmol.png'
+          assert logo.exists() and logo.stat().st_size > 1000
+          sha = hashlib.sha256(logo.read_bytes()).hexdigest()
+          print('logo sha', sha)
+          if sha != EXPECT_PNG_SHA:
+              print('WARNING logo sha mismatch; continuing if PNG magic ok')
           for name in ['favicon.png', 'apple-touch-icon.png']:
-              if not (root / name).exists() and logo.exists():
+              if not (root / name).exists():
                   shutil.copyfile(logo, root / name)
                   print('copied logo to', name)
-          assert logo.exists() and logo.stat().st_size > 1000
-          print('final logo', logo.stat().st_size)
           PY
       - name: Commit decoded PNGs
         run: |
