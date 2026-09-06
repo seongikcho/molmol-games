@@ -1,0 +1,57 @@
+name: Patch HTML logos
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-html-logos.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swap SVG logos for PNG + light theme
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          for p in Path('.').glob('*.html'):
+              html = p.read_text(encoding='utf-8')
+              orig = html
+              html = html.replace('data-theme="dark"', 'data-theme="light"', 1)
+              html = html.replace(
+                  '<link rel="icon" href="assets/logo-molmol.svg" type="image/svg+xml">',
+                  '<link rel="icon" href="assets/favicon.png" type="image/png">',
+              )
+              html = html.replace(
+                  '<link rel="apple-touch-icon" href="assets/logo-molmol.svg">',
+                  '<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">',
+              )
+              out=[]; i=0; needle='logo-molmol.svg'
+              while True:
+                  j=html.find(needle,i)
+                  if j<0:
+                      out.append(html[i:]); break
+                  window=html[max(0,j-48):j]
+                  if 'invert' in window:
+                      out.append(html[i:j+len(needle)])
+                  else:
+                      out.append(html[i:j]+'logo-molmol.png')
+                  i=j+len(needle)
+              html=''.join(out)
+              if html!=orig:
+                  p.write_text(html, encoding='utf-8')
+                  print('patched', p.name)
+              else:
+                  print('unchanged', p.name)
+          PY
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add *.html
+          if git diff --staged --quiet; then echo no changes; exit 0; fi
+          git commit -m "HTML: PNG logo refs + data-theme=light"
+          git push
