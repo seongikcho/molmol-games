@@ -1,0 +1,106 @@
+@media (min-width: 768px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .news-grid { grid-template-columns: repeat(4, 1fr); } }
+.news-card {
+  background: var(--surface); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+.news-card:hover { border-color: rgba(26, 24, 20, 0.28); transform: translateY(-3px); }
+.news-card-thumb {
+  aspect-ratio: 16/10; position: relative; overflow: hidden;
+}
+.news-card-thumb .poster { transition: transform 0.5s var(--ease); }
+.news-card:hover .news-card-thumb .poster { transform: scale(1.04); }
+.news-card-body { padding: 1.25rem; }
+.news-card-cat {
+  font-family: var(--font-en); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.news-card-title {
+  font-family: var(--font-ko); font-size: 1rem; font-weight: 600;
+  color: var(--text); line-height: 1.4; margin-bottom: 0.5rem;
+}
+.news-card-date { font-size: 0.8rem; color: var(--muted); }
+
+/* Recruit teaser */
+.recruit-band {
+  background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 4rem 0; text-align: center;
+}
+.recruit-band h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem); margin-bottom: 1.5rem;
+  max-width: 20ch; margin-inline: auto;
+}
+
+/* Page hero (inner pages) */
+.page-hero {
+  padding: calc(var(--header-h) + 4rem) 0 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.page-hero h1 { font-size: clamp(2.25rem, 6vw, 4rem); margin-bottom: 0.75rem; }
+.page-hero .lede {
+  font-size: 1.1rem; max-width: 48ch; color: var(--muted);
+}
+
+/* Games page blocks */
+.game-block {
+  padding: 5rem 0; border-bottom: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+.game-block-grid {
+  display: grid; gap: 2.5rem; align-items: start;
+}
+@media (min-width: 768px) {
+  .game-block-grid { grid-template-columns: 1fr 1.1fr; gap: 3.5rem; }
+}
+.game-block-visual {
+  aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--surface);
+}
+@media (min-width: 768px) {
+  .game-block-visual { aspect-ratio: 3/4; position: sticky; top: calc(var(--header-h) + 1.5rem); }
+}
+.game-block-info .badge { margin-bottom: 1rem; }
+.game-block-info h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: 0.35rem; }
+.game-block-info .ko-title { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; }
+.game-genre {
+  font-family: var(--font-en); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--accent); margin-bottom: 1rem;
+}
+.game-story p { margin-bottom: 0.75rem; }
+.features-list { margin: 1.5rem 0; display: grid; gap: 0.75rem; }
+.features-list li {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  font-size: 0.95rem; color: var(--text);
+}
+.features-list li::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0; margin-top: 0.45rem;
+}
+.game-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* About */
+.about-big {
+  font-size: clamp(3.5rem, 15vw, 10rem); letter-spacing: 0.06em;
+  line-height: 0.9; margin-bottom: 2rem; color: var(--text);
+  opacity: 0.95;
+}
+.about-copy { max-width: 62ch; margin-bottom: 3rem; }
+.about-copy p { margin-bottom: 1.25rem; font-size: 1.05rem; color: var(--muted); }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  margin-bottom: 4rem;
+}
+@media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.5rem 1.25rem; text-align: center;
+}
+.stat-num {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+  color: var(--text); margin-bottom: 0.25rem;
+}
+.stat-label { font-size: 0.8rem; color: var(--muted); }
+.values-grid {
+  display: grid; gap: 1.25rem; margin-bottom: 4rem;
+}
