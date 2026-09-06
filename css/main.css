@@ -1,2 +1,2 @@
-/* MOLMOL GAMES main.css — Warm bright studio */
-:root{--bg:#F7F2EA;--surface:#FFFFFF;--surface-2:#EFE8DC;--text:#1A1814;--muted:#6B645A;--accent:#FF5A36;--lime:#5A9E0B;--lime-bright:#C8F25A;--line:rgba(26,24,20,0.12);--max:1320px;--radius:10px;--radius-sm:8px;--radius-lg:12px;--header-h:72px;--ease:cubic-bezier(0.22,1,0.36,1);--font-display:"Syne",system-ui,sans-serif;--font-ko:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;--font-en:"Instrument Sans",system-ui,sans-serif}
+@import url("main.body1.css");
+@import url("main.body2.css");
