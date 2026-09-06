@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 48" role="img" aria-label="MOLMOL GAMES">
+  <g fill="currentColor">
+    <!-- Two touching round dots symbol -->
+    <circle cx="14" cy="24" r="10"/>
+    <circle cx="32" cy="24" r="10" opacity="0.85"/>
+    <!-- Wordmark -->
+    <text x="52" y="30" font-family="Syne, system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="0.08em">MOLMOL</text>
+    <!-- Small KO mark -->
+    <text x="210" y="30" font-family="Pretendard, system-ui, sans-serif" font-size="11" font-weight="500" letter-spacing="0.02em" opacity="0.75">몰몰게임즈</text>
+  </g>
+</svg>
