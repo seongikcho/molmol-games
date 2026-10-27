@@ -9,7 +9,7 @@ const games = {
   sword: {
     title: '초검행',
     meta: '초검행 / 무협 / 개발 중',
-    image: 'assets/chogeomhaeng.png',
+    image: 'assets/chogeomhaeng.png?v=20261028',
     description: '소녀. 그리고 강호. 첫 검으로 시작하는 강호의 여정, 몰몰게임즈가 준비하는 새로운 무협 게임 초검행을 만나보세요.',
     note: '현재 개발 중입니다. 게임 상세 정보와 출시 일정은 추후 공개합니다.'
   },
@@ -41,8 +41,8 @@ class PhotorealisticGlobe {
   async initTextures() {
     try {
       const [dayImg, nightImg] = await Promise.all([
-        this.loadImage('assets/earth-texture.jpg'),
-        this.loadImage('assets/earth-night.jpg').catch(() => null)
+        this.loadImage('assets/earth-texture.jpg?v=20261028'),
+        this.loadImage('assets/earth-night.jpg?v=20261028').catch(() => null)
       ]);
       const w = dayImg.naturalWidth || 1024;
       const h = dayImg.naturalHeight || 512;

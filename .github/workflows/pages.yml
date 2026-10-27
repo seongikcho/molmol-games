@@ -36,12 +36,15 @@ jobs:
               CHANGED=1
             fi
           done
+          if [ -f assets/chogeomhaeng.png ]; then
+            cp -f assets/chogeomhaeng.png assets/chogeomhaeng-white.png
+          fi
           if [ "$CHANGED" -eq 1 ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -A
             if ! git diff --cached --quiet; then
-              git commit -m "chore: decode binary image assets [skip ci]"
+              git commit -m "chore: decode white-background chogeomhaeng.png and binary assets [skip ci]"
               git push origin HEAD:main
             fi
           fi

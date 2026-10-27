@@ -61,7 +61,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
-  color-scheme: light;
+  color-scheme: only light;
+  forced-color-adjust: none;
 }
 
 body {
@@ -346,15 +347,18 @@ h1 {
   letter-spacing: -3.5px;
   margin: 0 0 26px;
   font-weight: 800;
-  color: var(--ink-navy);
-  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.9);
+  color: #0c192c;
+  -webkit-text-fill-color: #0c192c;
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.95), 0 0 4px rgba(255, 255, 255, 0.9);
 }
 
 h1 > span {
-  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 52%, #38bdf8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #0284c7 !important;
+  -webkit-text-fill-color: #0284c7 !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.98), 0 0 6px rgba(255, 255, 255, 0.95);
 }
 
 .asterisk {
@@ -1208,6 +1212,13 @@ dialog::backdrop {
 
 @media (max-width: 900px) {
   header { height: 82px; }
+  .hero-sky-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(255, 255, 255, 0.94) 0%,
+        rgba(244, 250, 255, 0.90) 52%,
+        rgba(232, 245, 255, 0.65) 100%);
+  }
   .hero-content { grid-template-columns: 1fr; min-height: 500px; }
   h1 { font-size: 68px; letter-spacing: -2.8px; }
   .asterisk { font-size: 50px; margin-left: 14px; }
