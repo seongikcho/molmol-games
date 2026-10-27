@@ -29,19 +29,10 @@ jobs:
       - name: Decode binary assets and clean up obsolete files
         run: |
           CHANGED=0
-          if ls assets/space-guardians.png.b64* >/dev/null 2>&1; then
-            cat assets/space-guardians.png.b64* | base64 -d > assets/space-guardians.png
-            rm -f assets/space-guardians.png.b64*
-            CHANGED=1
-          fi
-          if ls assets/chogeomhaeng.png.b64* >/dev/null 2>&1; then
-            cat assets/chogeomhaeng.png.b64* | base64 -d > assets/chogeomhaeng.png
-            rm -f assets/chogeomhaeng.png.b64*
-            CHANGED=1
-          fi
-          for old_path in about.html games.html ir.html news.html news-detail.html recruit.html store.html contact.html css js .github/workflows/decode-pngs.yml assets/cotton-revenant.svg assets/dungeon-alchemist.svg assets/molmol-island.svg assets/og-cover.svg assets/starlight-odyssey.svg; do
-            if [ -e "$old_path" ]; then
-              git rm -rf --ignore-unmatch "$old_path" || rm -rf "$old_path"
+          for bin_name in space-guardians.png chogeomhaeng.png earth-texture.jpg earth-night.jpg; do
+            if ls assets/${bin_name}.b64* >/dev/null 2>&1; then
+              cat assets/${bin_name}.b64* | base64 -d > assets/${bin_name}
+              rm -f assets/${bin_name}.b64*
               CHANGED=1
             fi
           done
@@ -50,7 +41,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -A
             if ! git diff --cached --quiet; then
-              git commit -m "chore: finalize binary PNG assets and clean up legacy files [skip ci]"
+              git commit -m "chore: decode binary texture assets [skip ci]"
               git push origin HEAD:main
             fi
           fi
