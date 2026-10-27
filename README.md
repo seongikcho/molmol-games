@@ -1,25 +1,29 @@
-# MOLMOL GAMES — molmol.games
+# MOLMOL GAMES — 몰몰게임즈 (`molmol.games`)
 
-Static multipage site for **Molmol Games / 몰몰게임즈** (Seoul Seongsu).
+Static multipage official website for **Molmol Games / 몰몰게임즈** (Seongsu, Seoul · Original IP Game Studio).
 
-## Stack
-- Vanilla HTML / CSS / JS
-- Pretendard + Outfit (CDN)
-- KO default, ENG via header language dropdown
-- GitHub Pages (`.github/workflows/pages.yml`)
+- **Live URL**: [https://seongikcho.github.io/molmol-games/](https://seongikcho.github.io/molmol-games/)
+- **Next Lineup Anchor**: [https://seongikcho.github.io/molmol-games/index.html#next](https://seongikcho.github.io/molmol-games/index.html#next)
+- **Sitemap**: [https://seongikcho.github.io/molmol-games/sitemap.xml](https://seongikcho.github.io/molmol-games/sitemap.xml)
+- **Robots**: [https://seongikcho.github.io/molmol-games/robots.txt](https://seongikcho.github.io/molmol-games/robots.txt)
+
+## Stack & Features
+- Vanilla HTML5 / CSS3 / ES5+ JavaScript
+- Typography: Pretendard (KO) + Outfit (EN)
+- Bilingual (`KOR` default, `ENG` switchable via header language dropdown with `localStorage` persistence)
+- Full SEO optimization:
+  - Per-page unique `<title>`, `<meta name="description">`, `<meta name="keywords">`, canonical URLs, and `hreflang` alternates (`ko`, `en`, `x-default`)
+  - Open Graph (`og:*`) and Twitter Card (`twitter:*`) metadata
+  - JSON-LD Structured Data (`Organization`, `WebSite`, `VideoGame`, `CollectionPage`, `AboutPage`, `ContactPage`, `NewsArticle`)
+  - `sitemap.xml` & `robots.txt`
+- Automated GitHub Pages deployment via `.github/workflows/pages.yml`
 
 ## Pages
-`index` · `about` · `games` · `recruit` · `news` · `news-detail` · `ir` · `contact` · `store`
-
-## Design
-Graphic · badge · soft-pop · warm paper (`#F6F1E8`) · ink (`#111`) · pop coral sparingly.  
-Slogan: **PLAY SOFT. HIT HARD.** / 몰몰하게, 제대로.
-
-## Logo
-- `assets/logo-molmol.svg` — black badge (header on dark)
-- `assets/logo-molmol-invert.svg` — white badge (light headers)
-- `assets/logo-molmol.png` — kept source asset
-- Favicon / apple-touch from badge mark
-
-## Local
-Open `index.html` or any static server from this folder.
+- `index.html` — Hero, 4 Original IP Showcases (`#cotton-revenant`, `#night-market`, `#hush-parade`, `#project-maru`), What's Next 2026–2027 Roadmap (`#next`), Latest News (`#latest-news`), Recruit CTA
+- `about.html` — Studio philosophy (*Soft Worlds, Hard Systems, Long Memories*) & Seongsu team stats
+- `games.html` — Full lineup details (`COTTON REVENANT`, `MOLLY & THE NIGHT MARKET`, `HUSH PARADE`, `PROJECT MARU`)
+- `recruit.html` — Benefits & filterable open positions accordion
+- `news.html` & `news-detail.html` — Category-filterable studio & patch news
+- `ir.html` — Studio highlights, metrics, press notes (`#press-notes`), and IR contact
+- `contact.html` — Direct department emails (`press`, `recruit`, `biz`, `ir`) & interactive inquiry form
+- `store.html` — Official merchandise showcase & release notification modal

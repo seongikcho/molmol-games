@@ -80,7 +80,19 @@
       notify_submit: 'Subscribe',
       menu_open: '메뉴 열기',
       menu_close: '메뉴 닫기',
-      panel_tag: '몰몰하게, 제대로.'
+      panel_tag: '몰몰하게, 제대로.',
+      next_eyebrow: 'WHAT\'S NEXT · 2026–2027 LINEUP',
+      next_title: 'NEXT AT MOLMOL',
+      next_lede: '라이브 타이틀의 새로운 시즌부터 차기 플래그십 프로젝트 마루까지, 몰몰게임즈가 준비 중인 다음 장면.',
+      next_c1_phase: '2026 Q4 · LIVE & UPDATE',
+      next_c1_title: '코튼 레버넌트 & 몰리와 밤시장 시즌 확장',
+      next_c1_desc: '코튼 레버넌트 무료 확장팩 ‘실의 잔향’ 후속 패치와 몰리와 밤시장 가을·겨울 등불 축제 시즌이 이어집니다.',
+      next_c2_phase: '2026 Q4 · G-STAR & SHOWCASE',
+      next_c2_title: '프로젝트 마루 플레이어블 빌드 & 아트북',
+      next_c2_desc: '수면과 수중을 넘나드는 동아시아 신화 판타지 ‘프로젝트 마루’의 전투 프로토타입과 월드 프리뷰를 공개합니다.',
+      next_c3_phase: '2027 · FLAGSHIP ROADMAP',
+      next_c3_title: '글로벌 콘솔·PC 동시 출격 준비',
+      next_c3_desc: '성수 스튜디오 88명의 개발진이 4개의 오리지널 IP 세계관을 확장하며 글로벌 파트너십을 넓혀갑니다.'
     },
     en: {
       logo_wordmark: 'MOLMOL GAMES',
@@ -154,7 +166,19 @@
       notify_submit: 'Subscribe',
       menu_open: 'Open menu',
       menu_close: 'Close menu',
-      panel_tag: 'Soft worlds. Hard play.'
+      panel_tag: 'Soft worlds. Hard play.',
+      next_eyebrow: 'WHAT\'S NEXT · 2026–2027 LINEUP',
+      next_title: 'NEXT AT MOLMOL',
+      next_lede: 'From new live seasons to our next flagship PROJECT MARU—here is what Molmol Games is building next.',
+      next_c1_phase: '2026 Q4 · LIVE & UPDATE',
+      next_c1_title: 'Cotton Revenant & Night Market Expansions',
+      next_c1_desc: 'Follow-up tuning for Cotton Revenant: Echo Thread and the Autumn/Winter Lantern Festival season in Molly & The Night Market.',
+      next_c2_phase: '2026 Q4 · G-STAR & SHOWCASE',
+      next_c2_title: 'Project Maru Playable Build & Art Notes',
+      next_c2_desc: 'Unveiling combat prototypes and underwater myth world previews for our East Asian myth fantasy flagship, PROJECT MARU.',
+      next_c3_phase: '2027 · FLAGSHIP ROADMAP',
+      next_c3_title: 'Global Console & PC Lineup Expansion',
+      next_c3_desc: 'Our 88-person Seongsu studio continues growing four original IPs for players worldwide.'
     }
   };
 
