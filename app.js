@@ -9,7 +9,7 @@ const games = {
   sword: {
     title: '초검행',
     meta: '초검행 / 무협 / 개발 중',
-    image: 'assets/chogeomhaeng.png?v=20261028',
+    image: 'assets/chogeomhaeng.png?v=20261028c',
     description: '소녀. 그리고 강호. 첫 검으로 시작하는 강호의 여정, 몰몰게임즈가 준비하는 새로운 무협 게임 초검행을 만나보세요.',
     note: '현재 개발 중입니다. 게임 상세 정보와 출시 일정은 추후 공개합니다.'
   },
@@ -330,3 +330,98 @@ dialog.addEventListener('close', () => {
   document.body.style.overflow = '';
   lastTrigger?.focus();
 });
+
+
+/* ==========================================================================
+   SHIFT UP STYLE HERO SHOWCASE SLIDER (3 KEY ART SLIDES)
+   ========================================================================== */
+const heroSlidesData = [
+  {
+    edition: "01 / MOLMOL UNIVERSE · FLAGSHIP LINEUP",
+    index: "01",
+    title: "초검행 · 스페이스 가디언즈 · 더 어스",
+    tag: "KEY ART SHOWCASE",
+    subcopy: "가볍게 시작해, 깊이 빠져드는 세계.<br>독창적인 아트웍과 상상력으로 새로운 플레이를 만듭니다.",
+    quickGame: "sword",
+    quickLabel: "초검행 정보 보기"
+  },
+  {
+    edition: "02 / CHOGEOMHAENG · NEW WUXIA RPG",
+    index: "02",
+    title: "초검행 (初劍行)",
+    tag: "무협 · 개발 중",
+    subcopy: "소녀. 그리고 강호.<br>운해를 가르는 푸른 검기와 함께 나만의 강호가 열립니다.",
+    quickGame: "sword",
+    quickLabel: "초검행 자세히 보기"
+  },
+  {
+    edition: "03 / SPACE GUARDIANS · COSMIC ACTION",
+    index: "03",
+    title: "스페이스 가디언즈 (Space Guardians)",
+    tag: "SPACE ACTION · 개발 중",
+    subcopy: "작은 가디언의 커다란 우주 전투.<br>드론과 함께 쏟아지는 우주의 위협에 맞서세요.",
+    quickGame: "space",
+    quickLabel: "스페이스 가디언즈 보기"
+  }
+];
+
+const slideEls = document.querySelectorAll(".hero-slide");
+const tabEls = document.querySelectorAll(".hero-tab");
+const editionBadge = document.querySelector("#hero-edition-badge");
+const pillIndex = document.querySelector("#hero-pill-index");
+const pillTitle = document.querySelector("#hero-pill-title");
+const pillTag = document.querySelector("#hero-pill-tag");
+const heroSubcopy = document.querySelector("#hero-subcopy");
+const heroQuickBtn = document.querySelector("#hero-quick-btn");
+
+let currentHeroSlide = 0;
+let heroSlideTimer = null;
+
+function setHeroSlide(idx) {
+  if (!slideEls.length) return;
+  currentHeroSlide = (idx + slideEls.length) % slideEls.length;
+  slideEls.forEach((el, i) => {
+    el.classList.toggle("is-active", i === currentHeroSlide);
+  });
+  tabEls.forEach((btn, i) => {
+    const active = i === currentHeroSlide;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-selected", active ? "true" : "false");
+    const bar = btn.querySelector(".tab-bar");
+    if (bar) {
+      bar.style.animation = "none";
+      void bar.offsetWidth;
+      bar.style.animation = active ? "" : "none";
+    }
+  });
+  const d = heroSlidesData[currentHeroSlide];
+  if (d) {
+    if (editionBadge) editionBadge.textContent = d.edition;
+    if (pillIndex) pillIndex.textContent = d.index;
+    if (pillTitle) pillTitle.textContent = d.title;
+    if (pillTag) pillTag.textContent = d.tag;
+    if (heroSubcopy) heroSubcopy.innerHTML = d.subcopy;
+    if (heroQuickBtn) {
+      heroQuickBtn.dataset.game = d.quickGame;
+      heroQuickBtn.innerHTML = `${d.quickLabel} <span>+</span>`;
+    }
+  }
+}
+
+function restartHeroTimer() {
+  if (heroSlideTimer) clearInterval(heroSlideTimer);
+  heroSlideTimer = setInterval(() => {
+    setHeroSlide(currentHeroSlide + 1);
+  }, 6000);
+}
+
+if (tabEls.length) {
+  tabEls.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetIdx = Number(btn.dataset.slideTarget || 0);
+      setHeroSlide(targetIdx);
+      restartHeroTimer();
+    });
+  });
+  restartHeroTimer();
+}
