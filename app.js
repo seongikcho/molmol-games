@@ -432,46 +432,25 @@ if (tabEls.length) {
    ========================================================================== */
 const newsItemsData = {
   news1: {
-    title: "신작 무협 액션 RPG ‘초검행(初劍行)’, 주요 배경 및 소녀 검객 원화 최초 공개",
-    meta: "PRESS RELEASE · 2026.10.28",
-    description: "몰몰게임즈가 개발 중인 신작 무협 액션 RPG ‘초검행’의 핵심 무대인 강변 객잔 마을 풍경과 주인공 소녀 검객의 콘셉트 원화를 공개했습니다. 서정적인 동양풍 산수화와 감각적인 캐릭터 아트가 어우러진 독창적인 강호를 만나보세요.",
-    note: "카테고리: 보도자료 / 초검행 (개발 중)",
-    image: "assets/hero-sword-keyart.jpg?v=20261028d"
+    title: "‘스페이스 가디언즈’, 전술 드론과 우주 탄막 액션 전투 개발 소식 공개",
+    meta: "SPACE GUARDIANS · 2026.10",
+    description: "우주 곳곳의 위협에 맞서는 ‘스페이스 가디언즈’의 핵심 플레이 메커니즘인 자율 비행 드론 시너지 시스템과 시원한 타격감의 우주 탄막 액션 전투를 개발 중입니다.",
+    note: "카테고리: 개발 소식 / 스페이스 가디언즈",
+    image: "assets/space-guardians.png?v=20261028e"
   },
   news2: {
-    title: "‘스페이스 가디언즈’, 전술 드론 조합과 대규모 우주 탄막 전투 시스템 프리뷰 공개",
-    meta: "DEV NOTE · 2026.10.15",
-    description: "우주 곳곳의 위협에 맞서는 ‘스페이스 가디언즈’의 핵심 플레이 메커니즘인 자율 비행 드론 시너지 시스템과 시원한 타격감의 탄막 액션 전투 개발 노트를 공개합니다.",
-    note: "카테고리: 개발 노트 / 스페이스 가디언즈",
-    image: "assets/space-guardians.png?v=20261028d"
+    title: "몰몰게임즈(MOLMOL GAMES) 공식 브랜드 사이트 오픈 안내",
+    meta: "NOTICE · 2026.10",
+    description: "‘몰몰하게, 제대로.’ 몰몰게임즈가 대표 라인업 3종(스페이스 가디언즈, 초검행, 더 어스)과 스튜디오 소식을 담은 공식 웹사이트를 오픈했습니다.",
+    note: "카테고리: 공지사항 / 몰몰게임즈 사이트 오픈",
+    image: "assets/hero-studio.jpg?v=20261028e"
   },
   news3: {
-    title: "몰몰게임즈(MOLMOL GAMES), 2026 차세대 IP 라인업 쇼케이스 및 공식 사이트 리뉴얼 오픈",
-    meta: "NOTICE · 2026.10.02",
-    description: "‘몰몰하게, 제대로.’ 몰몰게임즈가 대표 개발작 3종(스페이스 가디언즈, 초검행, 더 어스)의 키아트 쇼케이스와 최신 기업 소식을 담은 공식 홈페이지를 새롭게 단장했습니다.",
-    note: "카테고리: 스튜디오 소식 / 공식 발표",
-    image: "assets/hero-studio.jpg?v=20261028d"
-  },
-  news4: {
-    title: "화면 너머 현실과 가상을 잇는 신개념 AR/VR 프로젝트 ‘더 어스(The Earth)’ 기술 R&D 착수",
-    meta: "PROJECT · 2026.09.18",
-    description: "일상의 공간이 곧 새로운 모험의 무대가 되는 차세대 실감형 AR/VR 프로젝트 ‘더 어스(The Earth)’가 공간 인식 및 인터랙션 R&D를 본격화합니다.",
-    note: "카테고리: 신규 프로젝트 / 더 어스 (개발 예정)",
-    image: "assets/earth-texture.jpg?v=20261028d"
-  },
-  news5: {
-    title: "‘소녀. 그리고 강호’ — 몰몰게임즈 신작 ‘초검행’ 공식 캘리그라피 BI 및 콘셉트 공개",
-    meta: "ARTWORK · 2026.08.29",
-    description: "힘 있는 붓터치와 붉은 낙관으로 첫 검의 결의를 담아낸 ‘초검행(初劍行)’의 공식 타이틀 BI와 세계관 핵심 슬로건을 소개합니다.",
-    note: "카테고리: 아트웍 / 초검행",
-    image: "assets/chogeomhaeng.png?v=20261028d"
-  },
-  news6: {
-    title: "몰몰게임즈, 신규 프로젝트 개발 확장에 따른 프로그래밍·아트·기획 전 직군 인재 영입",
-    meta: "CAREERS · 2026.08.11",
-    description: "작은 호기심을 오래 기억될 모험으로 만드는 몰몰게임즈에서 ‘스페이스 가디언즈’와 ‘초검행’을 함께 완성할 열정적인 개발자 및 아티스트를 상시 모집합니다.",
-    note: "카테고리: 채용 안내 / 상시 모집",
-    image: "assets/hero-studio.jpg?v=20261028d"
+    title: "차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’ R&D 착수",
+    meta: "R&D · 2026.10",
+    description: "화면 너머 더 넓은 세계를 향해 나아가는 몰몰게임즈의 차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’가 핵심 공간 인터랙션 기술 R&D에 착수했습니다.",
+    note: "카테고리: 신규 프로젝트 / 더 어스 R&D 착수",
+    image: "assets/earth-texture.jpg?v=20261028e"
   }
 };
 
@@ -488,7 +467,7 @@ const corpItemsData = {
     meta: "CORPORATE · TRANSPARENCY & GROWTH",
     description: "몰몰게임즈는 독창적인 자체 IP(‘스페이스 가디언즈’, ‘초검행’, ‘더 어스’) 창출과 글로벌 멀티 플랫폼 확장을 통해 지속 가능한 기업 가치를 만들어갑니다. 기업지배구조, 재무정보, IR 발표 자료 및 공식 공고 사항을 투명하게 제공합니다.",
     note: "IR 및 파트너십 문의: 공식 채널 상시 운영",
-    image: "assets/hero-sword-keyart.jpg?v=20261028d"
+    image: "assets/hero-sword-keyart.jpg?v=20261028e"
   }
 };
 
