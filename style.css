@@ -1833,3 +1833,32 @@ dialog::backdrop {
   .hero-showcase-pill { max-width: 100%; white-space: nowrap; }
   .hero { touch-action: pan-y; }
 }
+
+/* v26: casual sticker-style header CTA (desktop) */
+.nav-cta {
+  border: 2px solid #0b1a2e;
+  border-radius: 7px;
+  background: var(--sky-primary, #0ea5e9);
+  color: #ffffff;
+  box-shadow: 4px 4px 0 #0b1a2e;
+  font-weight: 800;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.nav-cta:hover {
+  background: var(--sky-deep, #0284c7);
+  border-color: #0b1a2e;
+  color: #ffffff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #0b1a2e;
+}
+.nav-cta:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 #0b1a2e; }
+
+/* v26: mobile hero CTAs always stacked, full width */
+@media (max-width: 600px) {
+  .hero-content, .hero-copy { min-width: 0; max-width: 100%; }
+  .hero-showcase-pill { overflow: hidden; box-sizing: border-box; }
+  .hero-showcase-pill .pill-tag { display: none; }
+  .hero-showcase-pill .pill-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-actions .button, .hero-actions .hero-Quick-btn { width: 100%; justify-content: space-between; box-sizing: border-box; }
+}
