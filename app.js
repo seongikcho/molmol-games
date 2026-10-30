@@ -9,7 +9,7 @@ const games = {
   sword: {
     title: '초검행',
     meta: '초검행 / 무협 / 개발 중',
-    image: 'assets/chogeomhaeng.png?v=20261029v24',
+    image: 'assets/chogeomhaeng.png?v=20261029v25',
     description: '소녀. 그리고 강호. 첫 검으로 시작하는 강호의 여정, 몰몰게임즈가 준비하는 새로운 무협 게임 초검행을 만나보세요.',
     note: '현재 개발 중입니다. 게임 상세 정보와 출시 일정은 추후 공개합니다.'
   },
@@ -41,8 +41,8 @@ class PhotorealisticGlobe {
   async initTextures() {
     try {
       const [dayImg, nightImg] = await Promise.all([
-        this.loadImage('assets/earth-texture.jpg?v=20261029v24'),
-        this.loadImage('assets/earth-night.jpg?v=20261029v24').catch(() => null)
+        this.loadImage('assets/earth-texture.jpg?v=20261029v25'),
+        this.loadImage('assets/earth-night.jpg?v=20261029v25').catch(() => null)
       ]);
       const w = dayImg.naturalWidth || 1024;
       const h = dayImg.naturalHeight || 512;
@@ -339,7 +339,7 @@ const heroSlidesData = [
   {
     edition: "01 / MOLMOL UNIVERSE · FLAGSHIP LINEUP",
     index: "01",
-    title: "초검행 · 스페이스 가디언즈 · 더 어스",
+    title: "MOLMOL UNIVERSE",
     tag: "KEY ART SHOWCASE",
     subcopy: "가볍게 시작해, 깊이 빠져드는 세계.<br>독창적인 아트웍과 상상력으로 새로운 플레이를 만듭니다.",
     quickGame: "sword",
@@ -426,6 +426,27 @@ if (tabEls.length) {
   restartHeroTimer();
 }
 
+/* Touch swipe on hero (mobile) */
+(function () {
+  const heroEl = document.querySelector(".hero");
+  if (!heroEl || !slideEls.length) return;
+  let sx = 0, sy = 0, tracking = false;
+  heroEl.addEventListener("touchstart", e => {
+    if (e.touches.length !== 1) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+  }, { passive: true });
+  heroEl.addEventListener("touchend", e => {
+    if (!tracking) return;
+    tracking = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      setHeroSlide(currentHeroSlide + (dx < 0 ? 1 : -1));
+      restartHeroTimer();
+    }
+  }, { passive: true });
+})();
+
 
 /* ==========================================================================
    NEWS & CORPORATE (RECRUIT / IR) DIALOG HANDLERS
@@ -436,21 +457,21 @@ const newsItemsData = {
     meta: "NOTICE · 2026.10",
     description: "‘몰몰하게, 제대로.’ 몰몰게임즈가 대표 라인업 3종(스페이스 가디언즈, 초검행, 더 어스)과 스튜디오 소식을 담은 공식 웹사이트를 오픈했습니다.",
     note: "카테고리: 공지사항 / 몰몰게임즈 사이트 오픈",
-    image: "assets/hero-studio.jpg?v=20261029v24"
+    image: "assets/hero-studio.jpg?v=20261029v25"
   },
   news2: {
     title: "‘스페이스 가디언즈’, 전술 드론과 우주 탄막 액션 전투 개발 소식 공개",
     meta: "SPACE GUARDIANS · 2026.10",
     description: "우주 곳곳의 위협에 맞서는 ‘스페이스 가디언즈’의 핵심 플레이 메커니즘인 자율 비행 드론 시너지 시스템과 시원한 타격감의 우주 탄막 액션 전투를 개발 중입니다.",
     note: "카테고리: 개발 소식 / 스페이스 가디언즈",
-    image: "assets/space-guardians.png?v=20261029v24"
+    image: "assets/space-guardians.png?v=20261029v25"
   },
   news3: {
     title: "차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’ R&D 착수",
     meta: "R&D · 2026.10",
     description: "화면 너머 더 넓은 세계를 향해 나아가는 몰몰게임즈의 차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’가 핵심 공간 인터랙션 기술 R&D에 착수했습니다.",
     note: "카테고리: 신규 프로젝트 / 더 어스 R&D 착수",
-    image: "assets/earth-texture.jpg?v=20261029v24"
+    image: "assets/earth-texture.jpg?v=20261029v25"
   }
 };
 
@@ -460,14 +481,14 @@ const corpItemsData = {
     meta: "CAREERS · SMALL STUDIO. BIG PLAY.",
     description: "몰몰게임즈는 자율과 몰입을 바탕으로, 우리가 직접 플레이하고 싶은 게임을 제대로 만드는 올인원 게임 개발 스튜디오입니다. 현재 아트(캐릭터·배경 원화, 일러스트) 및 마케팅 분야의 인재를 영입하고 있습니다.",
     note: "모집 분야: 아트 · 마케팅 (포트폴리오 및 이력서 접수)",
-    image: "assets/hero-studio.jpg?v=20261029v24"
+    image: "assets/hero-studio.jpg?v=20261029v25"
   },
   ir: {
     title: "IR · 기업 정보 및 공시 안내 (INVESTOR RELATIONS)",
     meta: "CORPORATE · TRANSPARENCY & GROWTH",
     description: "몰몰게임즈는 독창적인 자체 IP(‘스페이스 가디언즈’, ‘초검행’, ‘더 어스’) 창출과 글로벌 멀티 플랫폼 확장을 통해 지속 가능한 기업 가치를 만들어갑니다. 기업지배구조, 재무정보, IR 발표 자료 및 공식 공고 사항을 투명하게 제공합니다.",
     note: "IR 및 파트너십 문의: 공식 채널 상시 운영",
-    image: "assets/hero-sword-keyart.jpg?v=20261029v24"
+    image: "assets/hero-sword-keyart.jpg?v=20261029v25"
   }
 };
 
