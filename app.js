@@ -2,14 +2,14 @@ const games = {
   space: {
     title: '스페이스 가디언즈',
     meta: 'SPACE GUARDIANS / 개발 중',
-    image: 'assets/space-guardians.png',
+    image: 'assets/space-guardians.png?v=20261106v29',
     description: '귀여운 가디언과 함께하는 우주 액션. 드론과 원거리 무기를 강화하고, 쏟아지는 적과 보스의 공격에 맞서 나만의 전투를 펼쳐보세요.',
     note: '현재 개발 및 내부 테스트 중입니다. 정식 출시 일정은 추후 안내합니다.'
   },
   sword: {
     title: '초검행',
     meta: '초검행 / 무협 / 개발 중',
-    image: 'assets/chogeomhaeng.png?v=20261029v28',
+    image: 'assets/chogeomhaeng.png?v=20261106v29',
     description: '소녀. 그리고 강호. 첫 검으로 시작하는 강호의 여정, 몰몰게임즈가 준비하는 새로운 무협 게임 초검행을 만나보세요.',
     note: '현재 개발 중입니다. 게임 상세 정보와 출시 일정은 추후 공개합니다.'
   },
@@ -41,8 +41,8 @@ class PhotorealisticGlobe {
   async initTextures() {
     try {
       const [dayImg, nightImg] = await Promise.all([
-        this.loadImage('assets/earth-texture.jpg?v=20261029v28'),
-        this.loadImage('assets/earth-night.jpg?v=20261029v28').catch(() => null)
+        this.loadImage('assets/earth-texture.jpg?v=20261106v29'),
+        this.loadImage('assets/earth-night.jpg?v=20261106v29').catch(() => null)
       ]);
       const w = dayImg.naturalWidth || 1024;
       const h = dayImg.naturalHeight || 512;
@@ -362,7 +362,7 @@ const heroSlidesData = [
   {
     edition: "03 / SPACE GUARDIANS · COSMIC ACTION",
     index: "03",
-    title: "스페이스 가디언즈 (Space Guardians)",
+    title: "SPACE GUARDIANS",
     tag: "SPACE ACTION · 개발 중",
     subcopy: "작은 가디언의 커다란 우주 전투.<br>드론과 함께 쏟아지는 우주의 위협에 맞서세요.",
     quickGame: "space",
@@ -462,21 +462,21 @@ const newsItemsData = {
     meta: "NOTICE · 2026.10",
     description: "‘몰몰하게, 제대로.’ 몰몰게임즈가 대표 라인업 3종(스페이스 가디언즈, 초검행, 더 어스)과 스튜디오 소식을 담은 공식 웹사이트를 오픈했습니다.",
     note: "카테고리: 공지사항 / 몰몰게임즈 사이트 오픈",
-    image: "assets/hero-studio.jpg?v=20261029v28"
+    image: "assets/hero-studio.jpg?v=20261106v29"
   },
   news2: {
     title: "‘스페이스 가디언즈’, 전술 드론과 우주 탄막 액션 전투 개발 소식 공개",
     meta: "SPACE GUARDIANS · 2026.10",
     description: "우주 곳곳의 위협에 맞서는 ‘스페이스 가디언즈’의 핵심 플레이 메커니즘인 자율 비행 드론 시너지 시스템과 시원한 타격감의 우주 탄막 액션 전투를 개발 중입니다.",
     note: "카테고리: 개발 소식 / 스페이스 가디언즈",
-    image: "assets/space-guardians.png?v=20261029v28"
+    image: "assets/space-guardians.png?v=20261106v29"
   },
   news3: {
     title: "차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’ R&D 착수",
     meta: "R&D · 2026.10",
     description: "화면 너머 더 넓은 세계를 향해 나아가는 몰몰게임즈의 차세대 AR/VR 프로젝트 ‘더 어스(The Earth)’가 핵심 공간 인터랙션 기술 R&D에 착수했습니다.",
     note: "카테고리: 신규 프로젝트 / 더 어스 R&D 착수",
-    image: "assets/earth-texture.jpg?v=20261029v28"
+    image: "assets/earth-texture.jpg?v=20261106v29"
   }
 };
 
@@ -486,7 +486,7 @@ const corpItemsData = {
     meta: "CAREERS · SMALL STUDIO. BIG PLAY.",
     description: "몰몰게임즈는 자율과 몰입을 바탕으로, 우리가 직접 플레이하고 싶은 게임을 제대로 만드는 올인원 게임 개발 스튜디오입니다. 현재 게임 아트/디자인 및 마케팅/광고 분야의 인재를 영입하고 있습니다. 지원 및 문의: seong9513@gmail.com",
     note: "모집 분야: 게임 아트/디자인 · 마케팅/광고 (포트폴리오 및 이력서: seong9513@gmail.com)",
-    image: "assets/hero-studio.jpg?v=20261029v28"
+    image: "assets/hero-studio.jpg?v=20261106v29"
   }
 };
 
